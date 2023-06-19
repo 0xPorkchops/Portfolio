@@ -65,6 +65,7 @@
                 width: 100%;
                 height: calc(100vh - 40px);
                 box-sizing: border-box;
+                display:none;
             }
 
             body.light-mode #json-view {
@@ -103,10 +104,18 @@
                 background-color: #bbb;
             }
             @media (max-width: 600px) {
-            .button-container button {
-                font-size: xx-large;
+                .button-container button {
+                    font-size: xx-large;
+                }
             }
-}
+
+            body.light-mode a, body.light-mode a:visited {
+                color: #0072b1;
+            }
+
+            body.dark-mode a, body.light-mode a:visited {
+                color:#00aff0;
+            }
         </style>
     </head>
     <body class="light-mode">
@@ -123,7 +132,8 @@
                     <p>Name: <span id="name"></span></p>
                     <p>Email: <span id="email"></span></p>
                     <p>Phone: <span id="phone"></span></p>
-                    <p>Address: <span id="address"></span></p>
+                    <p>Location: <span id="location"></span></p>
+                    <p><a id="linkedin-link" href="https://www.linkedin.com/in/cameron-proulx-551797194/" target=”_blank”>LinkedIn</a></p>
                 </div>
             </div>
 
@@ -138,7 +148,7 @@
                 <h2 class="section-title">Education</h2>
                 <div class="section-content">
                     <p><span id="degree"></span></p>
-                    <p><span id="university"></span>, <span id="location"></span>, Completed in <span id="completionYear"></span></p>
+                    <p><span id="university"></span>, <span id="universityLocation"></span>, Completed in <span id="completionYear"></span></p>
                 </div>
             </div>
 
@@ -164,61 +174,45 @@
                 "name": "Cameron Proulx",
                 "email": "proulxcameron@icloud.com",
                 "phone": "413-519-0418",
-                "address": "Holyoke, MA, 01040",
-                "summary": "Future back-end developer",
+                "location": "Holyoke, MA, 01040",
+                "linkedinLink": "https://www.linkedin.com/in/cameron-proulx-551797194/",
+                "summary": "Hi, I'm Cameron, a compsci student at Holyoke Community College with plans to transfer to University of Massachusetts Amherst. Growing up, I worked on business ideas that led me to learning software development along the way. Now I'm using this summer to work on my portfolio and interviewing skills. I'm currently practicing DSA problems in CodePath's Intermediate Technical Interview program, and in July, I will be participating in their Internship Connection Program. Further, I'm developing my portfolio with Meta's Back-End Developer Professional Certificate course. I hope to use the capstone website from that course to replace what you're seeing here. Thank you for your consideration!",
                 "education": [
                     {
                         "degree": "Associate of Science in Computer Science",
                         "university": "Holyoke Community College",
-                        "location": "Holyoke, MA",
+                        "universityLocation": "Holyoke, MA",
                         "completionYear": 2023
                     }
                 ],
                 "experience": [
                     {
-                        "title": "Abc123",
-                        "company": "Xyz123",
+                        "title": "Intern",
+                        "company": "Your company 🥺👉👈",
                         "location": "New York, NY",
-                        "startDate": "January 2021",
-                        "endDate": "Present",
+                        "startDate": "Future",
+                        "endDate": "Future + 1",
                         "responsibilities":[
-                            "Develop RESTful APIs and implemented...",
-                            "Did whatever"
-                        ],
-                        "title": "Abc123",
-                        "company": "Xyz123",
-                        "location": "New York, NY",
-                        "startDate": "January 2021",
-                        "endDate": "Present",
-                        "responsibilities":[
-                            "Develop RESTful APIs and implemented...",
-                            "Did whatever"
+                            "Develop RESTful APIs...",
+                            "or whatever you need 😁"
                         ]
                     }
                 ],
                 "skills": [
-                    "Programming Languages: Python",
-                    "Web Technologies: Node.js, Express.js, Django",
-                    "Database: SQL, MongoDB",
-                    "Version Control: Git, GitHub",
-                    "Algorithm Design and Analysis",
-                    "Data Structures",
-                    "Software Development Lifecycle",
-                    "Unit Testing and Test-Driven Development",
-                    "Agile Methodologies",
-                    "Problem Solving",
-                    "Teamwork and Collaboration"
+                    "Programming: Beautiful Soup, Selenium, Requests, Pickle, Firebase Realtime Database, Firestore, GSpread, Roblox Luau, Google Apps Script, XML API, JSON REST API, Anti-Captcha, DNS, Discord.py, PIL, Python",
+                    "Certifications: CodePath Intermediate Technical Interview Prep, Lyft Back-End Engineering Virtual Experience Program, Google Data Analytics Certificate, Meta Back-End Developer Professional Certificate"
                 ]
             };
             function displayResumeData() {
                 document.getElementById("name").innerText = resumeData.name;
                 document.getElementById("email").innerText = resumeData.email;
                 document.getElementById("phone").innerText = resumeData.phone;
-                document.getElementById("address").innerText = resumeData.address;
+                document.getElementById("location").innerText = resumeData.location;
+                document.getElementById("linkedin-link").href = resumeData.linkedinLink;
                 document.getElementById("summary").innerText = resumeData.summary;
                 document.getElementById("degree").innerText = resumeData.education[0].degree;
                 document.getElementById("university").innerText = resumeData.education[0].university;
-                document.getElementById("location").innerText = resumeData.education[0].location;
+                document.getElementById("universityLocation").innerText = resumeData.education[0].universityLocation;
                 document.getElementById("completionYear").innerText = resumeData.education[0].completionYear;
 
                 var experienceList = "";
