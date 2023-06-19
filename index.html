@@ -1,0 +1,295 @@
+<html>
+    <head>
+        <title>Hi, I'm Cameron :)</title>
+        <style type="text/css">
+            body {
+                font-family: arial, sans-serif;
+                margin: 20px;
+                color:#333;
+                background-color:#f5f5f5;
+                position: relative;
+            }
+            
+            body.dark-mode {
+                color: #eee;
+                background-color: #222;
+            }
+
+            h1 {
+                color: #222;
+            }
+
+            h2, h3 {
+                color: #555;
+            }
+
+            body.dark-mode h1, body.dark-mode h2, body.dark-mode h3 {
+                color: ccc;
+            }
+
+            .section {
+                margin-bottom: 20px;
+                background-color: #fff;
+                padding: 10px;
+                border-radius: 5px;
+            }
+
+            body.dark-mode .section {
+                background-color: #444;
+            }
+
+            .section-title {
+                font-size: 18px;
+                font-weight: bold;
+                margin-bottom: 10px;
+                color: #555;
+            }
+
+            .section-content {
+                margin-left: 20px;
+            }
+
+            .section-list {
+                padding-left: 20px;
+            }
+
+            .list-item {
+                margin-bottom: 5px;
+            }
+
+            #json-view {
+                margin-bottom: 20px;
+                background-color: #fff;
+                padding: 0;
+                border-radius: 5px;
+                width: 100%;
+                height: calc(100vh - 40px);
+                box-sizing: border-box;
+            }
+
+            body.light-mode #json-view {
+                color: #333;
+            }
+
+            body.dark-mode #json-view {
+                color: #eee;
+                background-color: #444;
+            }
+
+            .button-container {
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                z-index: 9999;
+            }
+
+            .button-container button {
+                margin-left: 10px;
+                padding: 10px 20px;
+                border-radius: 5px;
+                font-size: inherit;
+                border: 1px solid;
+                transition: background-color 0.3s;
+                background-color: #f5f5f5;
+                color: #555;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            
+            .button-container button:hover {
+                background-color: #ddd;
+            }
+
+            .button-container button:active {
+                background-color: #bbb;
+            }
+            @media (max-width: 600px) {
+            .button-container button {
+                font-size: xx-large;
+            }
+}
+        </style>
+    </head>
+    <body class="light-mode">
+
+        <div class="button-container">
+            <button id="toggle-colors" onclick="toggleColors()">Dark Mode</button>
+            <button id="toggle-json" onclick="toggleJson()">JSON View</button>
+        </div>
+        
+        <div id="html-view">
+            <div class="section">
+                <h2 class="section-title">Contact Information</h2>
+                <div class="section-content">
+                    <p>Name: <span id="name"></span></p>
+                    <p>Email: <span id="email"></span></p>
+                    <p>Phone: <span id="phone"></span></p>
+                    <p>Address: <span id="address"></span></p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Summary</h2>
+                <div class="section-content">
+                    <p id="summary"></p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Education</h2>
+                <div class="section-content">
+                    <p><span id="degree"></span></p>
+                    <p><span id="university"></span>, <span id="location"></span>, Completed in <span id="completionYear"></span></p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Experience</h2>
+                <div class="section-content">
+                    <ul class="section-list" id="experience"></ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Skills</h2>
+                <div class="section-content">
+                    <ul class="section-list" id="skills"></ul>
+                </div>
+            </div>
+        </div>
+
+        <textarea id="json-view" rows="10" cols="80"></textarea>
+
+        <script>
+            var resumeData = {
+                "name": "Cameron Proulx",
+                "email": "proulxcameron@icloud.com",
+                "phone": "413-519-0418",
+                "address": "Holyoke, MA, 01040",
+                "summary": "Future back-end developer",
+                "education": [
+                    {
+                        "degree": "Associate of Science in Computer Science",
+                        "university": "Holyoke Community College",
+                        "location": "Holyoke, MA",
+                        "completionYear": 2023
+                    }
+                ],
+                "experience": [
+                    {
+                        "title": "Abc123",
+                        "company": "Xyz123",
+                        "location": "New York, NY",
+                        "startDate": "January 2021",
+                        "endDate": "Present",
+                        "responsibilities":[
+                            "Develop RESTful APIs and implemented...",
+                            "Did whatever"
+                        ],
+                        "title": "Abc123",
+                        "company": "Xyz123",
+                        "location": "New York, NY",
+                        "startDate": "January 2021",
+                        "endDate": "Present",
+                        "responsibilities":[
+                            "Develop RESTful APIs and implemented...",
+                            "Did whatever"
+                        ]
+                    }
+                ],
+                "skills": [
+                    "Programming Languages: Python",
+                    "Web Technologies: Node.js, Express.js, Django",
+                    "Database: SQL, MongoDB",
+                    "Version Control: Git, GitHub",
+                    "Algorithm Design and Analysis",
+                    "Data Structures",
+                    "Software Development Lifecycle",
+                    "Unit Testing and Test-Driven Development",
+                    "Agile Methodologies",
+                    "Problem Solving",
+                    "Teamwork and Collaboration"
+                ]
+            };
+            function displayResumeData() {
+                document.getElementById("name").innerText = resumeData.name;
+                document.getElementById("email").innerText = resumeData.email;
+                document.getElementById("phone").innerText = resumeData.phone;
+                document.getElementById("address").innerText = resumeData.address;
+                document.getElementById("summary").innerText = resumeData.summary;
+                document.getElementById("degree").innerText = resumeData.education[0].degree;
+                document.getElementById("university").innerText = resumeData.education[0].university;
+                document.getElementById("location").innerText = resumeData.education[0].location;
+                document.getElementById("completionYear").innerText = resumeData.education[0].completionYear;
+
+                var experienceList = "";
+                for (var i = 0; i < resumeData.experience.length; i++) {
+                    var experience = resumeData.experience[i];
+                    var responsibilitiesList = experience.responsibilities.map(function (responsibility) {
+                        return "<li class='list-item'>" + responsibility + "</li>";
+                    }).join("");
+                    experienceList += "<li>" +
+                        "<h3>" + experience.title + "</h3>" +
+                        "<p>" + experience.company + ", " + experience.location + "</p>" +
+                        "<ul class='section-list'>" + responsibilitiesList + "</ul>" +
+                        "</li>";
+                }
+                document.getElementById("experience").innerHTML = experienceList;
+
+                var skillsList = resumeData.skills.map(function (skill) {
+                    return "<li class='list-item'>" + skill + "</li>";
+                }).join("");
+                document.getElementById("skills").innerHTML = skillsList;
+
+                var jsonView = document.getElementById("json-view");
+                jsonView.value = JSON.stringify(resumeData, null, 2);
+            }
+
+            function updateResumeData() {
+                var jsonView = document.getElementById("json-view");
+                try {
+                    var updateData = JSON.parse(jsonView.value);
+                    resumeData = updateData;
+                } catch (error) {
+                    console.error("Invalid JSON format:", error);
+                }
+            }
+
+            function updateHTMLView() {
+                updateResumeData();
+                displayResumeData();
+            }
+
+            function toggleJson() {
+            var htmlView = document.getElementById("html-view");
+            var jsonView = document.getElementById("json-view");
+            var toggleButton = document.getElementById("toggle-json");
+
+            if (htmlView.style.display === "none") {
+                htmlView.style.display = "block";
+                jsonView.style.display = "none";
+                toggleButton.innerText = "JSON View";
+                updateHTMLView();
+            } else {
+                htmlView.style.display = "none";
+                jsonView.style.display = "block";
+                toggleButton.innerText = "HTML View";
+            }
+            }
+
+            function toggleColors() {
+                var body = document.body;
+                var toggleButton = document.getElementById("toggle-colors");
+
+                if (body.classList.contains("dark-mode")) {
+                    body.classList.remove("dark-mode");
+                    toggleButton.innerText = "Dark Mode";
+                } else {
+                    body.classList.add("dark-mode");
+                    toggleButton.innerText = "Light Mode";
+                }
+            }
+
+            displayResumeData();
+        </script>
+    </body>
+</html>
